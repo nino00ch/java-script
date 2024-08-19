@@ -1,0 +1,104 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+<label for="text"></label>
+<input type="number">
+    </div>
+    <script>
+        let number = document.querySelector(".container");
+number.addEventListener("input", function(){
+    let num = Number(this.querySelector("input").value);
+    if(num % 2 === 0){
+        this.style.backgroundColor = "lightblue";
+    } else {
+        this.style.backgroundColor = "lightgreen";
+    }
+  
+});         
+    
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Color Coding</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
+        }
+        .number {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .even {
+            background-color: green;
+        }
+        .odd {
+            background-color: yellow;
+            color: black; 
+        }
+        .prime {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="number-container"></div>
+
+    <script>
+        // Function to check if a number is prime
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num <= 3) return true;
+            if (num % 2 === 0 || num % 3 === 0) return false;
+            for (let i = 5; i * i <= num; i += 6) {
+                if (num % i === 0 || num % (i + 2) === 0) return false;
+            }
+            return true;
+        }
+
+        // Get the container div
+        const container = document.getElementById('number-container');
+
+        // Loop from 1 to 100
+        for (let i = 1; i <= 100; i++) {
+            // Create a div for each number
+            const numberDiv = document.createElement('div');
+            numberDiv.classList.add('number');
+
+            // Set the number text
+            numberDiv.textContent = i;
+
+            // Determine the background color based on the number type
+            if (isPrime(i)) {
+                numberDiv.classList.add('prime');
+            } else if (i % 2 === 0) {
+                numberDiv.classList.add('even');
+            } else {
+                numberDiv.classList.add('odd');
+            }
+
+            // Append the number div to the container
+            container.appendChild(numberDiv);
+        }
+    </script>
+</body>
+</html>
